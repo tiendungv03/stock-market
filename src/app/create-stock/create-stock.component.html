@@ -1,0 +1,90 @@
+<div class="form-createStock">
+  <h1>create-stock Form!</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+    <div class="form-group">
+      <label for="stockName"
+        >The following element chages fỏm green to red when it is invalid</label
+      >
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        id="stockName"
+        formControlName="name"
+        placeholder="Stock Name"
+        [ngStyle]="{
+          'background-color': profileForm.get('name')?.valid
+            ? 'lightgreen'
+            : profileForm.get('name')?.touched
+            ? 'lightcoral'
+            : 'white'
+        }"
+      />
+    </div>
+    <div class="form-group">
+      <label for="stockCode"
+        >The following element chages fỏm green to red when it has been
+        momodified</label
+      >
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        id="stockCode"
+        formControlName="code"
+        placeholder="Stock Code"
+        [ngStyle]="{
+          'background-color': profileForm.get('code')?.pristine
+            ? 'white'
+            : 'lightcoral'
+        }"
+      />
+    </div>
+    <div class="form-group">
+      <label for="stockPrice"
+        >The following element chages form green to red when it is visited by
+        the user, regardless of change</label
+      >
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        id="stockPrice"
+        formControlName="price"
+        placeholder="Stock Price"
+        [ngStyle]="{
+          'background-color': profileForm.get('price')?.touched
+            ? 'lightcoral'
+            : 'white'
+        }"
+      />
+    </div>
+    <div class="form-group">
+      <select id="cars" name="cars" formControlName="exchange">
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="BingX">BingX</option>
+        <option value="OKX">OKX</option>
+        <option value="Binance">Binance</option>
+      </select>
+      <br />
+
+      <input
+        type="checkbox"
+        class="form-control"
+        id="stockCheckboxe"
+        formControlName="stockCheckboxe"
+      />
+      I confirm that the information provided is accurate!
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+  <div>
+    <h2>Profile Form</h2>
+    <p>Name: {{ profileForm.value.name }}</p>
+    <p>Code: {{ profileForm.value.code }}</p>
+    <p>Price: {{ profileForm.value.price }}</p>
+    <p>Exchange: {{ profileForm.value.exchange }}</p>
+    <p>Favorite: {{ profileForm.get("favorite")?.value }}</p>
+    <p>Checkbox: {{ profileForm.value.stockCheckboxe }}</p>
+  </div>
+</div>

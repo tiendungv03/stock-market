@@ -11,6 +11,9 @@
 </div> -->
 
 <div class="form-stock">
+  <div class="heading-welcome">
+    <h1>Welcome to Stock Market App!</h1>
+  </div>
   <div class="stock-container">
     <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
     <div
@@ -22,5 +25,26 @@
     <button (click)="toggleFavorite()" [disabled]="stock.favorite">
       Add to Favorite
     </button>
+  </div>
+
+  <div class="stock-list">
+    <h2>Stock List</h2>
+    <ul>
+      <li *ngFor="let stock of stocks">
+        <div class="stock-container">
+          <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
+          <div class="exchange">{{ stock.exchange }}</div>
+          <div
+            class="price"
+            [class]="stock.price > 0 ? 'positive' : 'negative'"
+          >
+            $ {{ stock.price }}
+          </div>
+          <button (click)="toggleFavorite()" [disabled]="stock.favorite">
+            Add to Favorite
+          </button>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>

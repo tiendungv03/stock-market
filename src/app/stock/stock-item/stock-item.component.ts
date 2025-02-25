@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { Stock } from '../../model/stock';
 
 @Component({
   standalone: true,
   selector: 'app-stock-item',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './stock-item.component.html',
   styleUrl: './stock-item.component.scss',
 })
@@ -18,7 +19,9 @@ export class StockItemComponent implements OnInit {
   // public positiveChange: boolean = false;
   // public favorite: boolean = false;
 
-  public stock: Stock = new Stock('', '', 0, 0);
+  @Input() stocks: Stock[] = [];
+
+  public stock: Stock = new Stock('', '', 0, 0, '');
   constructor() {}
   ngOnInit() {
     // this.name = 'Test Stock Company';
@@ -28,7 +31,7 @@ export class StockItemComponent implements OnInit {
     // this.positiveChange = this.price >= this.previousPrice;
     // this.favorite = false;
 
-    this.stock = new Stock('Test Stock Company', 'TSC', 85, 80);
+    this.stock = new Stock('Test Stock Company', 'TSC', 85, 80, 'NASDAQ');
   }
 
   toggleFavorite() {
