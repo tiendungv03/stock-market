@@ -10,7 +10,8 @@
   </div>
 </div> -->
 
-<div class="form-stock">
+<!-- Bài thực thực 2 -->
+<!-- <div class="form-stock">
   <div class="heading-welcome">
     <h1>Welcome to Stock Market App!</h1>
   </div>
@@ -22,25 +23,30 @@
     >
       $ {{ stock.price }}
     </div>
-    <button (click)="toggleFavorite()" [disabled]="stock.favorite">
+    <button (click)="toggleFavorite(stock)" [disabled]="stock.favorite">
       Add to Favorite
     </button>
-  </div>
+  </div> -->
 
+<div class="form-stock">
+  <div class="heading-welcome">
+    <h1>Welcome to Stock Market App!</h1>
+  </div>
   <div class="stock-list">
     <h2>Stock List</h2>
     <ul>
-      <li *ngFor="let stock of stocks">
+      <li *ngFor="let stock of stocks; let i = index">
         <div class="stock-container">
+          <!-- <h1>Index: {{ i }}</h1> -->
           <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
           <div class="exchange">{{ stock.exchange }}</div>
           <div
             class="price"
-            [class]="stock.price > 0 ? 'positive' : 'negative'"
+            [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
           >
             $ {{ stock.price }}
           </div>
-          <button (click)="toggleFavorite()" [disabled]="stock.favorite">
+          <button (click)="toggleFavorite(i)" [disabled]="stock.favorite">
             Add to Favorite
           </button>
         </div>

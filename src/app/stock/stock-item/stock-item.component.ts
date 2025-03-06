@@ -11,7 +11,6 @@ import { Stock } from '../../model/stock';
   styleUrl: './stock-item.component.scss',
 })
 export class StockItemComponent implements OnInit {
-  public favorite: boolean = false;
   // public name: string = '';
   // public code: string = '';
   // public price: number = 0;
@@ -21,7 +20,7 @@ export class StockItemComponent implements OnInit {
 
   @Input() stocks: Stock[] = [];
 
-  public stock: Stock = new Stock('', '', 0, 0, '');
+  // public stock: Stock = new Stock('', '', 0, 0, '');
   constructor() {}
   ngOnInit() {
     // this.name = 'Test Stock Company';
@@ -30,12 +29,16 @@ export class StockItemComponent implements OnInit {
     // this.previousPrice = 80;
     // this.positiveChange = this.price >= this.previousPrice;
     // this.favorite = false;
-
-    this.stock = new Stock('Test Stock Company', 'TSC', 85, 80, 'NASDAQ');
+    // this.stock = new Stock('Test Stock Company', 'TSC', 85, 80, 'NASDAQ');
   }
 
-  toggleFavorite() {
-    this.stock.favorite = !this.stock.favorite;
+  toggleFavorite(index: number) {
+    this.stocks[index].favorite = !this.stocks[index].favorite;
     alert('We are toggling the favorite state for this stock');
   }
+
+  // toggleFavorite() {
+  //   this.Stock.favorite = !this.Stock.favorite;
+  //   alert('We are toggling the favorite state for this stock');
+  // }
 }

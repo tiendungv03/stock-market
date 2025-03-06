@@ -1,9 +1,14 @@
+// .form-stock {
+//   background: linear-gradient(135deg, #3494e6, #ec6ead);
+// }
+
 .stock-container {
   margin: 10px;
   padding: 10px;
   border: 1px solid black;
   border-radius: 5px;
   display: inline-block;
+  text-align: center;
 }
 
 .heading-welcome {
@@ -14,14 +19,34 @@
   margin-top: 40px;
 }
 
-.stock-container {
-  text-align: center;
-}
-
 .positive {
   color: green;
 }
 
 .negative {
   color: red;
+}
+
+.stock-list {
+  margin-top: 20px;
+  position: relative;
+}
+
+.stock-list ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stock-list ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stock-list li {
 }
