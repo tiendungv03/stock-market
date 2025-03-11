@@ -1,0 +1,30 @@
+<!-- <div class="form-stock">
+  <div class="stock-container">
+    <div class="name">{{ name + " (" + code + ")" }}</div>
+    <div class="price" [class]="positiveChange ? 'positive' : 'negative'">
+      $ {{ price }}
+    </div>
+    <button (click)="toggleFavorite()" [disabled]="favorite">
+      Add to favorite
+    </button>
+  </div>
+</div> -->
+
+<!-- Bài thực thực 2 -->
+<div class="form-stock">
+  <div class="heading-welcome">
+    <h1>Welcome to Stock Market App!</h1>
+  </div>
+  <div class="stock-container">
+    <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
+    <div
+      class="price"
+      [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
+    >
+      $ {{ stock.price }}
+    </div>
+    <button (click)="toggleFavorite(stock)" [disabled]="stock.favorite">
+      Add to Favorite
+    </button>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<!-- template -->
+<div>
+  <h2>Create Stock Form</h2>
+  <p></p>
+  <div>
+    <form (ngSubmit)="createStock(stockForm)" #stockForm="ngForm">
+      <div class="stock-name">
+        <label for="stockName">
+          The following element changes from green to red when it is invalid
+        </label>
+        <br />
+        <input
+          type="text"
+          name="name"
+          id="stockName"
+          placeholder="Stock Name"
+          #stockName="ngModel"
+          [(ngModel)]="stockCreate.name"
+          required
+          minlength="3"
+          maxlength="20"
+          pattern="^[a-zA-Z ]+$"
+          [ngStyle]="{
+            'background-color':
+              stockName.valid && stockName.touched
+                ? 'lightgreen'
+                : stockName.invalid && stockName.touched
+                ? 'lightpink'
+                : 'white'
+          }"
+        />
+        <br />
+
+        <div *ngIf="stockName.dirty && stockName.invalid">
+          <div *ngIf="stockName.errors?.['required']">
+            Stock Name is Mandatory.
+          </div>
+        </div>
+      </div>
+
+      <div class="stock-code">
+        <label for="stockCode">
+          The following element changes from green to red when it has been
+          modified
+        </label>
+        <br />
+        <input
+          type="text"
+          name="code"
+          id="stockCode"
+          placeholder="Stock Code"
+          #stockCode="ngModel"
+          [(ngModel)]="stockCreate.code"
+          required
+          minlength="2"
+          [ngStyle]="{
+            'background-color': stockCode.dirty ? 'lightpink' : 'white'
+          }"
+        />
+      </div>
+
+      <div *ngIf="stockCode.dirty && stockCode.invalid">
+        <div *ngIf="stockCode.errors?.['required']">
+          Stock Code is Mandatory.
+        </div>
+        <div *ngIf="stockCode.errors?.['minlength']">
+          Stock Code should be at least 2 characters.
+        </div>
+      </div>
+
+      <div class="stock-price">
+        <label for="stockPrice">
+          The following element changes from green to red when it is visited by
+          the user, regardless of changes
+        </label>
+        <br />
+        <input
+          type="text"
+          name="price"
+          id="stockPrice"
+          placeholder="Stock Price"
+          [(ngModel)]="stockCreate.price"
+          required
+          #stockPrice="ngModel"
+          [ngStyle]="{
+            'background-color': stockPrice.touched ? 'lightpink' : 'lightgreen'
+          }"
+        />
+      </div>
+
+      <div *ngIf="stockPrice.touched && stockPrice.invalid">
+        <div *ngIf="stockPrice.errors?.['required']">
+          Stock Price is Mandatory.
+        </div>
+      </div>
+
+      <br />
+      <div class="form-group">
+        <label for="favorite">Exchange </label>
+        <select id="cars" name="cars" [(ngModel)]="stockCreate.exchange">
+          <option value="NASDAQ">NASDAQ</option>
+          <option value="BingX">BingX</option>
+          <option value="OKX">OKX</option>
+          <option value="Binance">Binance</option>
+        </select>
+      </div>
+      <div class="stock-confirm">
+        <input
+          type="checkbox"
+          name="confirmed"
+          required
+          [(ngModel)]="confirmed"
+        />
+        <label for="">
+          I confirm that the information provided above is accurate!
+        </label>
+      </div>
+      <div class="create-btn">
+        <button type="submit" [disabled]="stockForm.invalid || !confirmed">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+  <h4>Stock Name is {{ stockCreate | json }}</h4>
+  <h4>Data has been confirmed: {{ confirmed }}</h4>
+</div>

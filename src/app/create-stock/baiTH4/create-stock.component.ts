@@ -5,7 +5,10 @@ import {
   FormControl,
   FormGroup,
   Validators,
+  FormBuilder,
+  NgForm,
 } from '@angular/forms';
+import { Stock } from '../../model/stock';
 @Component({
   standalone: true,
   selector: 'app-create-stock',
@@ -14,7 +17,8 @@ import {
   styleUrl: './create-stock.component.scss',
 })
 export class CreateStockComponent implements OnInit {
-  @Output() stockCreated = new EventEmitter<any>();
+  // @Output() stockCreated = new EventEmitter<any>();
+  public stockList = {};
 
   profileForm = new FormGroup({
     name: new FormControl('', [
@@ -31,6 +35,8 @@ export class CreateStockComponent implements OnInit {
     stockCheckboxe: new FormControl(false, Validators.required),
   });
 
+  constructor() {}
+
   ngOnInit() {
     this.profileForm.get('name')?.valueChanges.subscribe((value) => {
       if (value?.trim() !== '') {
@@ -45,6 +51,9 @@ export class CreateStockComponent implements OnInit {
         });
       }
     });
+
+    // this.loadStockFromServer();
+    // this.patchStockForm();
   }
 
   handleRandomStockPrice() {
@@ -56,7 +65,7 @@ export class CreateStockComponent implements OnInit {
   handleSubmit() {
     if (this.profileForm.valid) {
       if (this.profileForm.get('stockCheckboxe')?.value) {
-        this.stockCreated.emit(this.profileForm.value);
+        this.stockList = this.profileForm.value;
         this.profileForm.reset();
       } else {
         alert('Please check the checkbox before submitting.');
@@ -64,5 +73,30 @@ export class CreateStockComponent implements OnInit {
     } else {
       alert('Please fill in all required fields.');
     }
+  }
+
+  loadStockFromServer() {
+    const stockData = {
+      name: 'Bitcoin',
+      code: 'BTC',
+      price: 80000,
+      previousPrice: 920000,
+      exchange: 'Binance',
+      favorite: true,
+      stockCheckboxe: true,
+    };
+    this.profileForm.setValue(stockData);
+  }
+
+  patchStockForm() {
+    this.profileForm.patchValue({
+      name: 'Ethereum',
+      code: 'ETH',
+      price: 1900,
+      previousPrice: 2400,
+      exchange: 'Binance',
+      favorite: true,
+      stockCheckboxe: true,
+    });
   }
 }
