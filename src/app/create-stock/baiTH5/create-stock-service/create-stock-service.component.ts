@@ -5,20 +5,18 @@ import {
   FormControl,
   FormGroup,
   Validators,
-  FormBuilder,
-  NgForm,
 } from '@angular/forms';
-import { Stock } from '../../model/stock';
+import { StockService } from '../../../services/stock.service';
+import { Stock } from '../../../model/stock';
 @Component({
   standalone: true,
-  selector: 'app-create-stock',
+  selector: 'app-create-stock-service',
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './create-stock.component.html',
-  styleUrl: './create-stock.component.scss',
+  templateUrl: './create-stock-service.component.html',
+  styleUrl: './create-stock-service.component.scss',
 })
-export class CreateStockComponent implements OnInit {
+export class CreateStockServiceComponent implements OnInit {
   // @Output() stockCreated = new EventEmitter<any>();
-  public stockList = {};
 
   profileForm = new FormGroup({
     name: new FormControl('', [
@@ -35,7 +33,7 @@ export class CreateStockComponent implements OnInit {
     stockCheckboxe: new FormControl(false, Validators.required),
   });
 
-  constructor() {}
+  constructor(private stockService: StockService) {}
 
   ngOnInit() {
     this.profileForm.get('name')?.valueChanges.subscribe((value) => {
@@ -51,9 +49,6 @@ export class CreateStockComponent implements OnInit {
         });
       }
     });
-
-    this.loadStockServer();
-    this.patchStockForm();
   }
 
   handleRandomStockPrice() {
@@ -65,33 +60,26 @@ export class CreateStockComponent implements OnInit {
   handleSubmit() {
     if (this.profileForm.valid) {
       if (this.profileForm.get('stockCheckboxe')?.value) {
-        this.stockList = this.profileForm.value;
+        // this.stockCreated.emit(this.profileForm.value);
+        // this.profileForm.reset();
+        let formValue = this.profileForm.value;
+        let newStock = new Stock(
+          formValue.name!,
+          formValue.code!,
+          formValue.price!,
+          formValue.previousPrice!,
+          formValue.exchange!,
+          formValue.favorite!
+        );
+        console.log(newStock);
+        this.stockService.addStock(newStock);
+        alert('Thêm cổ phiếu thành công!');
         this.profileForm.reset();
       } else {
         alert('Please check the checkbox before submitting.');
       }
     } else {
       alert('Please fill in all required fields.');
-    }
-  }
-
-  loadStockServer() {
-    const stockData = {
-      name: 'Bitcoin',
-      code: 'BTC',
-    };
-    // this.profileForm.setValue(stockData);
-    this.stockList = stockData;
-  }
-
-  patchStockForm() {
-    if (this.stockList) {
-      this.profileForm.patchValue({
-        price: 80000,
-        previousPrice: 920000,
-        exchange: 'Binance',
-        favorite: true,
-      });
     }
   }
 }

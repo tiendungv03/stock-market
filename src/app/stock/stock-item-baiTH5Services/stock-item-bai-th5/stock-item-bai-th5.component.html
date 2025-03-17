@@ -1,0 +1,27 @@
+<div class="stock-container">
+  <!-- <h1>Index: {{ i }}</h1> -->
+  <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
+  <div class="exchange">{{ stock.exchange }}</div>
+  <div
+    class="price"
+    [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
+  >
+    $ {{ stock.price }}
+  </div>
+  <div class="">
+    <button (click)="onToggleFavorite(stock)" *ngIf="!stock.favorite">
+      Add to Favorite
+    </button>
+    <button (click)="onToggleFavorite(stock)" *ngIf="stock.favorite">
+      Remove from Favorite
+    </button>
+  </div>
+  <div class="metho-button">
+    <button class="delete-Stock red" (click)="OnDeleteStock(stock.code)">
+      Delete
+    </button>
+    <button class="update-Stock yellow" (click)="OnUpdateStock(stock)">
+      Update
+    </button>
+  </div>
+</div>

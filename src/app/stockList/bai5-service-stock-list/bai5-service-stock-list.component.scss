@@ -1,0 +1,45 @@
+// .form-stock {
+//   background: linear-gradient(135deg, #3494e6, #ec6ead);
+// }
+
+.heading-welcome {
+  text-align: center;
+}
+
+.form-stock {
+  margin-top: 40px;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.stock-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stock-list ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stock-list ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stock-list ul li {
+  grid-column: 1;
+}

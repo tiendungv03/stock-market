@@ -1,0 +1,27 @@
+<div class="form-stock">
+  <div class="heading-welcome">
+    <h1>Welcome to Stock Market App!</h1>
+  </div>
+  <div class="stock-list">
+    <h2>Stock List</h2>
+    <div class="search-item">
+      <label for="">search Stock by code </label>
+      <input type="search" id="Keysearch" />
+      <button class="search-btn" (click)="OnSearchStock()">search</button>
+    </div>
+    <ul>
+      <li *ngFor="let stock of stocks">
+        <app-stock-item-bai-th5
+          [stock]="stock"
+          (toggleFavorite)="onToggleFavorite(stock)"
+          (stockIndex)="onGetEventUpdateStock(stock)"
+        ></app-stock-item-bai-th5>
+      </li>
+    </ul>
+  </div>
+  <div id="form-updateStock">
+    <app-update-stock-service
+      [itemIndex]="dataIndexItem"
+    ></app-update-stock-service>
+  </div>
+</div>
