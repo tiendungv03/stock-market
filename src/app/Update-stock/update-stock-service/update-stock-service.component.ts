@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  OnChanges,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,8 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { StockService } from '../services/stock.service';
-import { Stock } from '../model/stock';
+import { StockService } from '../../services/stock.service';
+import { Stock } from '../../model/stock';
 
 @Component({
   selector: 'app-update-stock-service',
@@ -17,6 +24,7 @@ import { Stock } from '../model/stock';
 })
 export class UpdateStockServiceComponent implements OnChanges {
   @Input() itemIndex!: Stock;
+  @Output() dialogClosed = new EventEmitter<void>();
 
   updateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -61,13 +69,10 @@ export class UpdateStockServiceComponent implements OnChanges {
     console.log(newStock);
     this.stockService.updateStock(newStock);
     this.updateForm.reset();
+    this.closeDialog();
   }
 
-  // getDataItem(code: string) {
-  //   this.stocks.forEach((x) => {
-  //     if (x.code === code) {
-  //       this.updateForm.setValue(x);
-  //     }
-  //   });
-  // }
+  closeDialog() {
+    this.dialogClosed.emit();
+  }
 }

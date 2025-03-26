@@ -1,0 +1,145 @@
+<!-- reactive form control-->
+<div class="form-createStock">
+  <h1>create-stock Form!</h1>
+  <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+    <div class="form-group">
+      <label for="stockName"
+        >The following element chages fỏm green to red when it is invalid</label
+      >
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        id="stockName"
+        formControlName="name"
+        placeholder="Stock Name"
+        [ngStyle]="{
+          'background-color': profileForm.get('name')?.valid
+            ? 'lightgreen'
+            : profileForm.get('name')?.touched
+            ? 'lightcoral'
+            : 'white'
+        }"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          profileForm.get('name')?.invalid && profileForm.get('name')?.touched
+        "
+      >
+        <span *ngIf="profileForm.get('name')?.errors?.['required']"
+          >⚠ Name is required.</span
+        >
+        <span *ngIf="profileForm.get('name')?.errors?.['minlength']"
+          >⚠ Must be at least 3 characters.</span
+        >
+        <span *ngIf="profileForm.get('name')?.errors?.['maxlength']"
+          >⚠ Cannot exceed 20 characters.</span
+        >
+        <span *ngIf="profileForm.get('name')?.errors?.['pattern']"
+          >⚠ Only letters are allowed.</span
+        >
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="stockCode"
+        >The following element chages fỏm green to red when it has been
+        momodified</label
+      >
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        id="stockCode"
+        formControlName="code"
+        placeholder="Stock Code"
+        [ngStyle]="{
+          'background-color': profileForm.get('code')?.pristine
+            ? 'white'
+            : 'lightcoral'
+        }"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          profileForm.get('code')?.invalid && profileForm.get('code')?.touched
+        "
+      >
+        <span *ngIf="profileForm.get('code')?.errors?.['required']"
+          >⚠ Stock Code is required.</span
+        >
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="stockPrice"
+        >The following element chages form green to red when it is visited by
+        the user, regardless of change</label
+      >
+      <br />
+      <input
+        type="text"
+        class="form-control"
+        id="stockPrice"
+        formControlName="price"
+        placeholder="Stock Price"
+        [ngStyle]="{
+          'background-color': profileForm.get('price')?.touched
+            ? 'lightcoral'
+            : 'white'
+        }"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          profileForm.get('price')?.invalid && profileForm.get('price')?.touched
+        "
+      >
+        <span *ngIf="profileForm.get('price')?.errors?.['pattern']"
+          >⚠ Must be a valid number.</span
+        >
+      </small>
+    </div>
+    <br />
+    <div class="form-group">
+      <label for="favorite">Exchange </label>
+      <select id="cars" name="cars" formControlName="exchange">
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="BingX">BingX</option>
+        <option value="OKX">OKX</option>
+        <option value="Binance">Binance</option>
+      </select>
+      <small
+        class="text-danger"
+        *ngIf="
+          profileForm.get('exchange')?.invalid &&
+          profileForm.get('exchange')?.touched
+        "
+      >
+        <span>⚠ Please select a stock exchange.</span>
+      </small>
+
+      <br />
+
+      <input
+        type="checkbox"
+        class="form-control"
+        id="stockCheckboxe"
+        formControlName="stockCheckboxe"
+      />
+      I confirm that the information provided is accurate!
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+  <div>
+    <div>Form Control value: {{ profileForm.value | json }}</div>
+    <div>Form Control status: {{ profileForm.status }}</div>
+    <!-- <div>
+      <h2>Profile Form</h2>
+      <p>Name: {{ profileForm.get("stock.name")?.value }}</p>
+      <p>Code: {{ profileForm.get("stock.code")?.value }}</p>
+      <p>Price: {{ profileForm.get("stock.price")?.value }}</p>
+      <p>Exchange: {{ profileForm.get("stock.exchange")?.value }}</p>
+      <p>Favorite: {{ profileForm.get("favorite")?.value }}</p>
+    </div> -->
+  </div>
+</div>

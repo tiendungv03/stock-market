@@ -1,12 +1,11 @@
 <div class="stock-container">
-  <!-- <h1>Index: {{ i }}</h1> -->
   <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
   <div class="exchange">{{ stock.exchange }}</div>
   <div
     class="price"
-    [class]="stock.isPositiveChange() ? 'positive' : 'negative'"
+    [class]="isPositiveChange(stock) ? 'positive' : 'negative'"
   >
-    $ {{ stock.price }}
+    >$ {{ stock.price }}
   </div>
   <div class="">
     <button (click)="onToggleFavorite(stock)" *ngIf="!stock.favorite">
@@ -17,7 +16,7 @@
     </button>
   </div>
   <div class="metho-button">
-    <button class="delete-Stock red" (click)="OnDeleteStock(stock.code)">
+    <button class="delete-Stock red" (click)="OnDeleteStock(stock)">
       Delete
     </button>
     <button class="update-Stock yellow" (click)="OnUpdateStock(stock)">
@@ -26,9 +25,9 @@
   </div>
 
   <dialog #myDialog id="form-updateStock-dialog">
-    <app-update-stock-service
+    <app-update-stock-api
       [itemIndex]="stockIndex"
       (dialogClosed)="closeDialog()"
-    ></app-update-stock-service>
+    ></app-update-stock-api>
   </dialog>
 </div>

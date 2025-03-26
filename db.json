@@ -1,0 +1,34 @@
+{
+  "stocks": [
+    {
+      "id": "71ef",
+      "name": "Bitcoin",
+      "code": "BTC",
+      "price": 109,
+      "previousPrice": 110,
+      "exchange": "Binance",
+      "favorite": false
+    },
+    {
+      "id": "3b7c",
+      "name": "dung",
+      "code": "vtuko12",
+      "price": 882,
+      "previousPrice": 882,
+      "exchange": "BingX",
+      "favorite": true
+    },
+    {
+      "id": "ed11",
+      "name": "mewtdung",
+      "code": "vtd",
+      "price": 301,
+      "previousPrice": 1000,
+      "exchange": "Binance",
+      "favorite": true
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

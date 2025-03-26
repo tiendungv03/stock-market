@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Stock } from '../model/stock';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, of, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,57 +21,60 @@ export class StockService {
 
     // this.stocksSubject.next(this.stocks);
   }
-  getStocks(): Stock[] {
-    return this.stocks;
-  }
-
-  // getStocks(): Observable<Stock[]> {
-  //   return this.stocksSubject.asObservable();
+  // getStocks(): Stock[] {
+  //   return this.stocks;
   // }
 
-  getStockByCode(code: string): Stock | undefined {
-    return this.stocks.find((x) => x.code === code);
+  getStocks(): Observable<Stock[]> {
+    return of(this.stocks);
   }
 
-  addStock(stock: Stock) {
+  getStockByCode(code: string): Observable<Stock[]> {
+    return of(this.stocks.filter((x) => x.code === code));
+  }
+
+  addStock(stock: Stock): Observable<Stock[]> {
     console.log(stock);
     let item = this.stocks.find((x) => x.code === stock.code);
     if (item) {
-      return false;
+      return throwError(() => new Error('Stock error'));
     }
     this.stocks.push(stock);
-    // this.stocksSubject.next(this.stocks); // tự động cập nhật đến các component
-    return true;
+
+    return of(this.stocks);
   }
 
-  updateStock(stock: Stock) {
+  updateStock(stock: Stock): Observable<Stock[]> {
     let item = this.stocks.findIndex((x) => x.code === stock.code);
     console.log(item);
     if (item !== -1) {
       this.stocks[item] = stock;
       // this.stocksSubject.next(this.stocks);
-      return true;
+      return of(this.stocks);
     }
 
-    return false;
+    return throwError(() => new Error('Stock error'));
   }
 
-  deleteStock(code: string) {
+  deleteStock(code: string): Observable<Stock[]> {
     let itemIdex = this.stocks.findIndex((x) => x.code === code);
     if (itemIdex !== -1) {
       this.stocks.splice(itemIdex, 1);
       // this.stocksSubject.next(this.stocks);
-      return true;
+      return of(this.stocks);
     }
 
-    return false;
+    return throwError(() => new Error('Stock error delete'));
   }
 
-  toggleFavorite(stock: Stock) {
+  toggleFavorite(stock: Stock): Observable<Stock[]> {
     console.log(stock);
     let item = this.stocks.find((x) => x.code === stock.code);
     if (item) {
       item.favorite = !item.favorite;
+      return of(this.stocks);
     }
+
+    return throwError(() => new Error('Stock error toggle'));
   }
 }

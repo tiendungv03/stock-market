@@ -6,18 +6,15 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { StockService } from '../../../services/stock.service';
-import { Stock } from '../../../model/stock';
-@Component({
-  standalone: true,
-  selector: 'app-create-stock-service',
-  imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './create-stock-service.component.html',
-  styleUrl: './create-stock-service.component.scss',
-})
-export class CreateStockServiceComponent implements OnInit {
-  // @Output() stockCreated = new EventEmitter<any>();
+import { StockService } from '../../../HttpClient-service/stock.service';
 
+@Component({
+  selector: 'app-create-stock-api',
+  imports: [CommonModule, ReactiveFormsModule],
+  templateUrl: './create-stock-api.component.html',
+  styleUrl: './create-stock-api.component.scss',
+})
+export class CreateStockApiComponent {
   profileForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -63,17 +60,12 @@ export class CreateStockServiceComponent implements OnInit {
         // this.stockCreated.emit(this.profileForm.value);
         // this.profileForm.reset();
         let formValue = this.profileForm.value;
-        let newStock = new Stock(
-          formValue.name!,
-          formValue.code!,
-          formValue.price!,
-          formValue.previousPrice!,
-          formValue.exchange!,
-          formValue.favorite!
-        );
-        console.log(newStock);
-        this.stockService.addStock(newStock);
-        // alert('Thêm cổ phiếu thành công!');
+        console.log(formValue);
+        this.stockService.post(formValue).subscribe((data) => {
+          console.log('Stock Created', data);
+        });
+
+        // this.stockService.loadNext(formValue);
         this.profileForm.reset();
       } else {
         alert('Please check the checkbox before submitting.');

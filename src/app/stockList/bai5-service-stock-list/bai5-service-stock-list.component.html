@@ -6,11 +6,16 @@
     <h2>Stock List</h2>
     <div class="search-item">
       <label for="">search Stock by code </label>
-      <input type="search" id="Keysearch" />
+      <input
+        type="search"
+        name="Keysearch"
+        id="Keysearch"
+        [(ngModel)]="Keysearch"
+      />
       <button class="search-btn" (click)="OnSearchStock()">search</button>
     </div>
     <ul>
-      <li *ngFor="let stock of stocks">
+      <li *ngFor="let stock of stocks | async">
         <app-stock-item-bai-th5
           [stock]="stock"
           (toggleFavorite)="onToggleFavorite(stock)"
@@ -18,10 +23,5 @@
         ></app-stock-item-bai-th5>
       </li>
     </ul>
-  </div>
-  <div id="form-updateStock">
-    <app-update-stock-service
-      [itemIndex]="dataIndexItem"
-    ></app-update-stock-service>
   </div>
 </div>

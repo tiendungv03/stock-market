@@ -1,9 +1,17 @@
 <div>
   <form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdate()">
     <h2>Update Stock</h2>
-
     <div>
-      <p>Code: {{ updateForm.get("code")?.value }}</p>
+      <label>Code:</label>
+      <input
+        type="text"
+        formControlName="code"
+        readonly
+        class="readonly-gray"
+      />
+    </div>
+    <div>
+      <!-- <p>Code: {{ updateForm.get("code")?.value }}</p> -->
       <label>Name:</label>
       <input type="text" formControlName="name" />
     </div>
@@ -38,6 +46,18 @@
       </label>
     </div>
 
-    <button type="submit">Update</button>
+    <div>
+      <button type="submit" class="btn-from button-Update" role="button">
+        Update
+      </button>
+      <button
+        type="submit"
+        class="btn-from button-Cancel"
+        role="button"
+        (click)="closeDialog()"
+      >
+        Cancel
+      </button>
+    </div>
   </form>
 </div>

@@ -1,0 +1,63 @@
+<div>
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdate()">
+    <h2>Update Stock</h2>
+    <div>
+      <label>Code:</label>
+      <input
+        type="text"
+        formControlName="code"
+        readonly
+        class="readonly-gray"
+      />
+    </div>
+    <div>
+      <!-- <p>Code: {{ updateForm.get("code")?.value }}</p> -->
+      <label>Name:</label>
+      <input type="text" formControlName="name" />
+    </div>
+    <div>
+      <label>Price:</label>
+      <input type="number" formControlName="price" />
+    </div>
+
+    <div>
+      <label>Previous Price:</label>
+      <input type="number" formControlName="previousPrice" />
+    </div>
+
+    <div>
+      <label>Exchange:</label>
+      <select formControlName="exchange">
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="Binance">Binance</option>
+        <option value="OKX">OKX</option>
+        <option value="BingX">BingX</option>
+      </select>
+    </div>
+
+    <div>
+      <label>
+        <input
+          type="checkbox"
+          formControlName="favorite"
+          value="${stock.favorite}"
+        />
+        Favorite
+      </label>
+    </div>
+
+    <div>
+      <button type="submit" class="btn-from button-Update" role="button">
+        Update
+      </button>
+      <button
+        type="submit"
+        class="btn-from button-Cancel"
+        role="button"
+        (click)="closeDialog()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

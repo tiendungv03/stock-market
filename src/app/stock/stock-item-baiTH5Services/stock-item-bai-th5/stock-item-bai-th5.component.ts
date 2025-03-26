@@ -1,19 +1,30 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnInit,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Stock } from '../../../model/stock';
 import { CommonModule } from '@angular/common';
 import { StockService } from '../../../services/stock.service';
+import { UpdateStockServiceComponent } from '../../../Update-stock/update-stock-service/update-stock-service.component';
 
 @Component({
   standalone: true,
   selector: 'app-stock-item-bai-th5',
-  imports: [CommonModule],
+  imports: [CommonModule, UpdateStockServiceComponent],
   templateUrl: './stock-item-bai-th5.component.html',
   styleUrl: './stock-item-bai-th5.component.scss',
 })
 export class StockItemBaiTH5Component implements OnInit {
+  @ViewChild('myDialog') dialogUpdate!: ElementRef<HTMLDialogElement>;
+  public stockIndex!: any;
   @Input() stock!: Stock;
-  @Output() stockIndex = new EventEmitter<Stock>();
+  // @Output() stockIndex = new EventEmitter<Stock>();
 
   constructor(private stockService: StockService) {}
   ngOnInit() {}
@@ -27,7 +38,12 @@ export class StockItemBaiTH5Component implements OnInit {
 
   OnUpdateStock(stock: Stock) {
     // console.log(stock);
-    this.stockIndex.emit(stock);
+    this.stockIndex = stock;
+    this.dialogUpdate.nativeElement.showModal();
     // console.log(this.stockIndex);
+  }
+
+  closeDialog() {
+    this.dialogUpdate.nativeElement.close();
   }
 }
