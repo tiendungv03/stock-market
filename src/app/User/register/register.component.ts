@@ -6,7 +6,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { UsersService } from '../../HttpClient-service/users.service';
+import { UsersService } from '../../services/users.service';
 import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-register',
