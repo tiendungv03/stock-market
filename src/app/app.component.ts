@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { LoginComponent } from './User/login/login.component';
 import { StockItemComponent } from './stock/stock-item/stock-item.component';
 import { Stock } from './model/stock';
 import { CreateStockBaiTH3Component } from './create-stock/baiTH3/create-stock-bai-th3/create-stock-bai-th3.component';
@@ -15,8 +15,9 @@ import { CreateStockApiComponent } from './create-stock/baiTH6_API/create-stock-
   standalone: true,
   selector: 'app-root',
   // imports: [CreateStockComponent],
-  imports: [Bai5ServiceStockListComponent, CreateStockServiceComponent],
+  // imports: [Bai5ServiceStockListComponent, CreateStockServiceComponent],
   // imports: [APIStockListComponent, CreateStockApiComponent],
+  imports: [RouterOutlet, RouterLink, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

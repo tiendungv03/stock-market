@@ -1,0 +1,66 @@
+<div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-6">
+  <h2 class="text-2xl font-bold text-center mb-6">Chi tiết cổ phiếu</h2>
+
+  <form [formGroup]="stockForm" *ngIf="stockForm" class="space-y-4">
+    <div class="flex flex-col">
+      <label class="font-semibold">Name:</label>
+      <input
+        type="text"
+        formControlName="name"
+        class="border p-2 rounded bg-gray-100"
+        readonly
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-semibold">Code:</label>
+      <input
+        type="text"
+        formControlName="code"
+        class="border p-2 rounded bg-gray-100"
+        readonly
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-semibold">Price:</label>
+      <input
+        type="text"
+        formControlName="price"
+        class="border p-2 rounded bg-gray-100"
+        readonly
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-semibold">Previous Price:</label>
+      <input
+        type="text"
+        formControlName="previousPrice"
+        class="border p-2 rounded bg-gray-100"
+        readonly
+      />
+    </div>
+
+    <div class="flex flex-col">
+      <label class="font-semibold">Exchange:</label>
+      <input
+        type="text"
+        formControlName="exchange"
+        class="border p-2 rounded bg-gray-100"
+        readonly
+      />
+    </div>
+
+    <div class="flex items-center">
+      <label class="font-semibold mr-2">Favorite:</label>
+      <input
+        type="checkbox"
+        formControlName="favorite"
+        readonly
+        class="readonly-gray"
+        style="width: 10px"
+      />
+    </div>
+  </form>
+</div>

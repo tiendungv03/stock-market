@@ -1,0 +1,35 @@
+<div class="stock-container">
+  <div [routerLink]="'/stock/' + stock.code">
+    <div class="name">{{ stock.name + " (" + stock.code + ")" }}</div>
+    <div class="exchange">{{ stock.exchange }}</div>
+    <div
+      class="price"
+      [class]="isPositiveChange(stock) ? 'positive' : 'negative'"
+    >
+      >$ {{ stock.price }}
+    </div>
+  </div>
+  <div class="">
+    <button (click)="onToggleFavorite(stock)" *ngIf="!stock.favorite">
+      Add to Favorite
+    </button>
+    <button (click)="onToggleFavorite(stock)" *ngIf="stock.favorite">
+      Remove from Favorite
+    </button>
+  </div>
+  <div class="metho-button">
+    <button class="delete-Stock red" (click)="OnDeleteStock(stock)">
+      Delete
+    </button>
+    <button class="update-Stock yellow" (click)="OnUpdateStock(stock)">
+      Update
+    </button>
+  </div>
+
+  <dialog #myDialog id="form-updateStock-dialog">
+    <app-update-stock-bai8
+      [itemIndex]="stockIndex"
+      (dialogClosed)="closeDialog()"
+    ></app-update-stock-bai8>
+  </dialog>
+</div>

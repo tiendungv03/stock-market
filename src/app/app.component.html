@@ -12,9 +12,43 @@
 <!-- <app-create-stock></app-create-stock> -->
 
 <!-- bai thuc hanh 5 va 6-->
-<app-bai5-service-stock-list></app-bai5-service-stock-list>
-<app-create-stock-service></app-create-stock-service>
+<!-- <app-bai5-service-stock-list></app-bai5-service-stock-list>
+<app-create-stock-service></app-create-stock-service> -->
 
 <!-- bai thuc hanh 7 -->
 <!-- <app-api-stock-list></app-api-stock-list>
 <app-create-stock-api></app-create-stock-api> -->
+
+<!-- <div>
+  <span><a rou="/login">Login</a></span>
+  <span><a href="/register">Register</a></span>
+  <span><a href="/stocks/list">Stock List</a></span>
+  <span><a href="/stocks/create">Create Stock</a></span>
+</div> -->
+<nav class="links" role="navigation">
+  <ul>
+    <li>
+      <a
+        routerLink="/login"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Login</a
+      >
+    </li>
+    <li>
+      <a
+        routerLink="/register"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Register</a
+      >
+    </li>
+    <li>
+      <a routerLink="/stocks/list" routerLinkActive="active">List Stock</a>
+    </li>
+    <li>
+      <a routerLink="/stock/create" routerLinkActive="active">Create Stock</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>

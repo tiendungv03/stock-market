@@ -10,25 +10,79 @@
       "favorite": false
     },
     {
-      "id": "3b7c",
-      "name": "dung",
-      "code": "vtuko12",
-      "price": 882,
-      "previousPrice": 882,
-      "exchange": "BingX",
-      "favorite": true
-    },
-    {
       "id": "ed11",
       "name": "mewtdung",
       "code": "vtd",
-      "price": 301,
+      "price": 305,
       "previousPrice": 1000,
-      "exchange": "Binance",
+      "exchange": "OKX",
       "favorite": true
+    },
+    {
+      "id": "b2bb",
+      "name": "mko",
+      "code": "ma56",
+      "price": 189,
+      "previousPrice": 186,
+      "exchange": "NASDAQ",
+      "favorite": false
+    },
+    {
+      "id": "af41",
+      "name": "dung",
+      "code": "vtd",
+      "price": 636,
+      "previousPrice": 636,
+      "exchange": "BingX",
+      "favorite": false,
+      "stockCheckboxe": true
     }
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "users": [
+    {
+      "id": "1",
+      "username": "dung",
+      "email": "dung@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "51d0",
+      "username": "dungm",
+      "password": "123456",
+      "email": "cv@gmi.com"
+    },
+    {
+      "id": "cad9",
+      "username": "siok",
+      "password": "123456",
+      "email": "cs@fghj.com"
+    },
+    {
+      "id": "730c",
+      "username": "dind",
+      "password": "123456",
+      "email": "vo@xyz.com"
+    },
+    {
+      "id": "9cc8",
+      "username": "moij",
+      "password": "123456",
+      "email": "dcv@gmail.com"
+    },
+    {
+      "id": "464a",
+      "username": "drtg",
+      "password": "123456",
+      "email": "vsc@gmi.com"
+    },
+    {
+      "id": "c71d",
+      "username": "drtg123",
+      "password": "123456",
+      "email": "vsc@gmi.com"
+    }
+  ]
 }

@@ -1,0 +1,59 @@
+// .form-stock {
+//   background: linear-gradient(135deg, #3494e6, #ec6ead);
+// }
+
+.stock-container {
+  width: 190px;
+  height: 70%;
+  margin: 10px;
+  padding: 10px;
+  border: 1.5px solid black;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.stock-container:hover {
+  background-color: gainsboro;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.red {
+  background-color: red;
+  color: white;
+}
+
+.yellow {
+  background-color: yellow;
+}
+//css stock item
+
+.metho-button {
+  padding: 12px;
+}
+
+.metho-button button {
+  margin: 0 8px 8px 0;
+  padding: 4px;
+  border: 0;
+  border-radius: 4px;
+}
+
+button:hover {
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+dialog {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 300px;
+}
