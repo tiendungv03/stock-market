@@ -1,0 +1,68 @@
+<div class="register-container">
+  <div class="register-box">
+    <h2>Đăng ký</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Tên người dùng"
+          formControlName="username"
+        />
+        <p
+          *ngIf="
+            registerForm.get('username')?.invalid &&
+            registerForm.get('username')?.touched
+          "
+        >
+          Tên người dùng phải có ít nhất 3 ký tự
+        </p>
+      </div>
+
+      <div class="input-group">
+        <input type="email" placeholder="Email" formControlName="email" />
+        <p
+          *ngIf="
+            registerForm.get('email')?.invalid &&
+            registerForm.get('email')?.touched
+          "
+        >
+          Email không hợp lệ
+        </p>
+      </div>
+
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Mật khẩu"
+          formControlName="password"
+        />
+        <p
+          *ngIf="
+            registerForm.get('password')?.invalid &&
+            registerForm.get('password')?.touched
+          "
+        >
+          Mật khẩu ít nhất 6 ký tự
+        </p>
+      </div>
+
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Xác nhận mật khẩu"
+          formControlName="confirmPassword"
+        />
+        <p
+          *ngIf="
+            registerForm.hasError('mismatch') &&
+            registerForm.get('confirmPassword')?.touched
+          "
+        >
+          Mật khẩu không khớp
+        </p>
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">Đăng ký</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="stock-card" (click)="goToDetail(stock.code)">
+  <div class="stock-info">
+    <div class="stock-name">{{ stock.name }} ({{ stock.code }})</div>
+    <div class="stock-exchange">{{ stock.exchange }}</div>
+    <div
+      class="stock-price"
+      [ngClass]="isPositiveChange(stock) ? 'positive' : 'negative'"
+    >
+      ${{ stock.price }}
+    </div>
+  </div>
+
+  <div class="stock-actions">
+    <button
+      (click)="onToggleFavorite(stock); $event.stopPropagation()"
+      class="favorite-btn"
+    >
+      {{ stock.favorite ? "★ Remove" : "☆ Add" }}
+    </button>
+
+    <button
+      (click)="OnUpdateStock(stock); $event.stopPropagation()"
+      class="update-btn"
+    >
+      Update
+    </button>
+    <button
+      (click)="OnDeleteStock(stock); $event.stopPropagation()"
+      class="delete-btn"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+<dialog #myDialog id="form-updateStock-dialog">
+  <app-update-stock
+    [itemIndex]="stockIndex"
+    (dialogClosed)="closeDialog()"
+  ></app-update-stock>
+</dialog>

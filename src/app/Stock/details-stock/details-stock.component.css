@@ -1,0 +1,61 @@
+.max-w-lg {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.shadow-xl {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-xl {
+  border-radius: 1rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.text-gray-800 {
+  color: #333;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.space-y-6 {
+  margin-top: 1.5rem;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.bg-gray-100 {
+  background-color: #f7fafc;
+}
+
+.mat-form-field .mat-label {
+  color: #4a5568;
+}
+
+.mat-checkbox {
+  margin-top: 12px;
+}
+
+.mat-checkbox.mat-checkbox-disabled .mat-checkbox-background {
+  background-color: #e2e8f0;
+}
+
+.mat-checkbox .mat-checkbox-frame {
+  border-color: #e2e8f0;
+}
+
+.locked-checkbox {
+  pointer-events: none;
+}

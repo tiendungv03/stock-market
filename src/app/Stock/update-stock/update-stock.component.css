@@ -1,0 +1,50 @@
+.readonly-gray {
+  background-color: #f0f0f0;
+  color: #666;
+  cursor: not-allowed;
+  border: 1px solid #ccc;
+}
+/* CSS */
+.button-Update {
+}
+
+.button-Cancel {
+}
+
+.btn-from {
+  background-color: #1899d6;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 13px 16px;
+  margin: 7px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  width: 100px;
+}
+
+.btn-from:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.btn-update:disabled {
+  cursor: auto;
+}
+
+.btn-from:active {
+  border-width: 4px 0 0;
+  background: none;
+}
