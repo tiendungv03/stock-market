@@ -10,8 +10,9 @@ import {
 import { StockService } from '../../services/HttpClient-service-stock.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Observable, of } from 'rxjs';
 import { ItemStockComponent } from '../item-stock/item-stock.component';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, switchMap, startWith } from 'rxjs/operators';
 
 @Component({
   standalone: false,
@@ -22,7 +23,7 @@ import { ItemStockComponent } from '../item-stock/item-stock.component';
 })
 export class ListStockComponent {
   // public stocks: any[] = [];
-  public stocks!: Observable<any[]>;
+  // public stocks$!: Observable<any[]>;
   // public stockList: any;
   // pagedStocks: any[] = []; // Dữ liệu hiện tại hiển thị
   // currentPage: number = 1;
@@ -32,14 +33,19 @@ export class ListStockComponent {
   public dataIndexItem!: any;
   Keysearch: any = '';
 
+  private refresh$ = new BehaviorSubject<void>(undefined);
+
+  // mặc định load tất cả
+  stocks$: Observable<any[]> = this.refresh$.pipe(
+    switchMap(() => this.stockService.getStocks()),
+    map((res: any) => res?.data ?? []),
+    startWith([])
+  );
+
   constructor(private stockService: StockService) {}
 
   ngOnInit() {
-    this.stockService.getStocks().subscribe((data) => {
-      this.stocks = of(data);
-      console.log('Stock list:', data);
-    });
-    // this.stocks = this.stockService.getStocks();
+    this.refresh$.next(); // nạp lần đầu
   }
 
   onGetEventUpdateStock(stock: any) {
@@ -48,24 +54,39 @@ export class ListStockComponent {
   }
 
   OnSearchStock() {
-    if (this.Keysearch == '') {
-      this.stocks = this.stockService.getStocks();
-    } else {
-      this.stocks.subscribe((stocks) => {
-        const tempID = stocks.find(
-          (stock: any) => stock.code == this.Keysearch
-        )?.id;
-        console.log('id ', tempID);
-        if (tempID) {
-          this.stockService.getStockByCode(tempID).subscribe((data) => {
-            this.stocks = of([data]);
-          });
-        } else {
-          alert('Stock not found!');
-        }
-      });
+    const q = this.Keysearch.trim();
+    if (!q) {
+      this.refresh$.next(); // về danh sách đầy đủ
+      return;
     }
+    // server-side: nếu có API getByCode trả về 1 item
+    this.stocks$ = this.stockService
+      .getStockByCode(q)
+      .pipe(map((item: any) => (item ? [item] : [])));
+
+    // hoặc client-side filter:
+    // this.stocks$ = this.stockService.getStocks().pipe(
+    //   map((res: any) => (res?.data ?? []).filter((x: any) => x.code === q))
+    // );
+  }
+
+  // callback sau khi con xoá
+  onDeleted(_id: string) {
+    console.log('Deleted id:', _id);
+    this.refresh$.next(); // re-fetch để UI cập nhật
+  }
+
+  // tuỳ chọn: nếu muốn re-fetch khi toggle fav
+  onToggledFav(_id: string) {
+    this.refresh$.next();
   }
 
   goToPage(page: number) {}
+
+  onUpdated(_item: any) {
+    this.refresh$.next(); // re-fetch sau khi PUT thành công
+  }
+
+  // trackBy để UI mượt
+  trackById = (_: number, s: any) => s._id ?? s.id;
 }

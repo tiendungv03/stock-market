@@ -12,9 +12,12 @@
 
   <div class="stock-list">
     <app-item-stock
-      *ngFor="let stock of stocks | async"
+      *ngFor="let stock of stocks$ | async"
       [stock]="stock"
       (stockIndex)="onGetEventUpdateStock(stock)"
+      (deleted)="onDeleted($event)"
+      (toggledFav)="onToggledFav($event)"
+      (updated)="onUpdated($event)"
     >
     </app-item-stock>
   </div>
