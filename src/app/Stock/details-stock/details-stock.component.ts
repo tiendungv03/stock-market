@@ -17,8 +17,11 @@ import { StockService } from '../../services/HttpClient-service-stock.service';
   styleUrl: './details-stock.component.css',
 })
 export class DetailsStockComponent {
-  stocks: [] = [];
+  // stocks: [] = [];
+  // stockForm!: FormGroup;
+
   stockForm!: FormGroup;
+  notFound = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,30 +30,42 @@ export class DetailsStockComponent {
   ) {}
 
   ngOnInit() {
-    // const stockId = this.route.snapshot.paramMap.get('id');
     const stockCode = this.route.snapshot.paramMap.get('code');
-
-    if (stockCode) {
-      this.stockService.getStocks().subscribe((data) => {
-        this.stocks = data;
-        console.log('data item ', stockCode, data);
-
-        const stock = this.stocks.find((s: any) => s.code === stockCode);
-        if (stock) {
-          this.initializeForm(stock);
-        }
-      });
+    console.log('Stock code from route:', stockCode);
+    if (!stockCode) {
+      this.notFound = true;
+      return;
     }
+
+    // nếu service có getStockByCode
+    this.stockService.getStockByCode(stockCode).subscribe({
+      next: (res: any) => {
+        const stock = res?.data ?? null;
+        if (!stock) {
+          this.notFound = true;
+          return;
+        }
+        console.log('Fetched stock details:', stock);
+        this.initializeForm(stock);
+      },
+      error: () => (this.notFound = true),
+    });
   }
 
-  initializeForm(stock: any) {
+  private initializeForm(stock: any) {
     this.stockForm = this.fb.group({
-      name: [stock.name, Validators.required],
-      code: [stock.code, Validators.required],
-      price: [stock.price, Validators.required],
-      previousPrice: [stock.previousPrice, Validators.required],
-      exchange: [stock.exchange, Validators.required],
-      favorite: [stock.favorite],
+      name: [{ value: stock.name, disabled: true }, Validators.required],
+      code: [{ value: stock.code, disabled: true }, Validators.required],
+      price: [{ value: stock.price, disabled: true }, Validators.required],
+      previousPrice: [
+        { value: stock.previousPrice, disabled: true },
+        Validators.required,
+      ],
+      exchange: [
+        { value: stock.exchange, disabled: true },
+        Validators.required,
+      ],
+      favorite: [{ value: stock.favorite, disabled: true }],
     });
   }
 }
