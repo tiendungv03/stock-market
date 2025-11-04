@@ -69,10 +69,10 @@ a {
 
 .hero {
   position: relative;
-  background-color: #313c3f;
+  background-color: #ddeb9d;
   background-size: cover;
   background-position: center;
-  height: 80vh;
+  height: 38vh;
   color: white;
   text-align: center;
   display: flex;
