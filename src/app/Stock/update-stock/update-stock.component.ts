@@ -25,6 +25,7 @@ import { Router, RouterModule } from '@angular/router';
 export class UpdateStockComponent {
   @Input() itemIndex!: any;
   @Output() dialogClosed = new EventEmitter<void>();
+  @Output() updated = new EventEmitter<any>();
 
   updateForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -57,22 +58,16 @@ export class UpdateStockComponent {
     }
   }
   onSubmitUpdate() {
-    let formValue = this.updateForm.value;
-    let newStock = {
-      _id: this.itemIndex._id,
-      name: formValue.name,
-      code: formValue.code,
-      price: formValue.price,
-      previousPrice: formValue.previousPrice,
-      exchange: formValue.exchange,
-      favorite: formValue.favorite,
-    };
-    // console.log('Stock Updated', newStock);
-    this.stockService.put(newStock._id, newStock).subscribe((data) => {
-      console.log('Stock Updated put', data);
-    });
+    const formValue = this.updateForm.getRawValue();
+    const newStock = { _id: this.itemIndex._id, ...formValue };
 
-    this.closeDialog();
+    this.stockService.put(newStock._id, newStock).subscribe({
+      next: (data) => {
+        this.updated.emit(data); // báo lên cha/ông
+        this.closeDialog();
+      },
+      error: (e) => console.error(e),
+    });
   }
 
   closeDialog() {
