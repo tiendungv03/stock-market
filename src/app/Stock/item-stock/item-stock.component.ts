@@ -42,36 +42,55 @@ import { MatIconModule } from '@angular/material/icon';
 export class ItemStockComponent {
   @ViewChild('myDialog') dialogUpdate!: ElementRef<HTMLDialogElement>;
   @Input() stock!: any;
-  @Output() stockIndex = new EventEmitter<any>();
+
+  @Output() editRequested = new EventEmitter<any>();
+  @Output() deleted = new EventEmitter<string>();
+  @Output() toggledFav = new EventEmitter<string>();
+  @Output() updated = new EventEmitter<any>();
+
+  // thêm state để truyền cho form update
+  selectedStock: any = null;
 
   constructor(private stockService: StockService, private router: Router) {}
-  ngOnInit() {}
 
   isPositiveChange(stock: any): boolean {
     return this.stockService.isPositiveChange(stock);
   }
+
   onToggleFavorite(stock: any) {
-    this.stockService.toggleFavorite(stock).subscribe((response) => {
-      console.log('Stock favorite', response);
+    this.stockService.toggleFavorite(stock).subscribe({
+      next: (res) => {
+        console.log('Stock favorite', res);
+        this.toggledFav.emit(stock._id); // báo cho cha
+      },
+      error: (e) => console.error(e),
     });
   }
 
   OnDeleteStock(stock: any) {
-    console.log('Stock Deleted', stock);
-    this.stockService.delete(stock._id).subscribe((response) => {
-      console.log('Stock Deleted', response);
+    this.stockService.delete(stock._id).subscribe({
+      next: (res) => {
+        console.log('Stock Deleted', res);
+        this.deleted.emit(stock._id); // báo cho cha để refresh
+      },
+      error: (e) => console.error(e),
     });
-    // this.stockService.loadNext(stock);
   }
 
   OnUpdateStock(stock: any) {
-    console.log('Stock Updated', this.stockIndex);
-    this.stockIndex = stock;
-    this.dialogUpdate.nativeElement.showModal();
+    this.selectedStock = stock; // set bản ghi đang sửa
+    this.editRequested.emit(stock); // (tuỳ chọn) báo lên cha
+    this.dialogUpdate?.nativeElement?.showModal();
+  }
+
+  // nhận sự kiện từ form con và bubble lên cha
+  onChildUpdated(updatedItem: any) {
+    this.updated.emit(updatedItem); // báo cho cha để refresh
+    this.closeDialog();
   }
 
   closeDialog() {
-    this.dialogUpdate.nativeElement.close();
+    this.dialogUpdate?.nativeElement?.close();
   }
 
   goToDetail(code: string) {

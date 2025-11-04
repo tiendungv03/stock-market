@@ -32,9 +32,11 @@
     </button>
   </div>
 </div>
+
 <dialog #myDialog id="form-updateStock-dialog">
   <app-update-stock
-    [itemIndex]="stockIndex"
+    [itemIndex]="selectedStock"
+    (updated)="onChildUpdated($event)"
     (dialogClosed)="closeDialog()"
   ></app-update-stock>
 </dialog>
