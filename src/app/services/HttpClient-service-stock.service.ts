@@ -26,6 +26,7 @@ export class StockService {
 
   public getStockByCode(_id: any): Observable<any> {
     const url = `${this.rest_Api_Server}/stocks/${_id}`;
+    console.log('Get Stock by code URL:', url);
     return this.http.get<any>(url, this.httpOptions);
   }
 
