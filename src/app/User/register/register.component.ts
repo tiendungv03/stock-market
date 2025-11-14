@@ -42,16 +42,27 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      let data = this.registerForm.value;
-      let dataPost = {
+      const data = this.registerForm.value;
+      const dataPost = {
         username: data.username!,
         password: data.password!,
         email: data.email!,
       };
-      this.user.postUser(dataPost).subscribe((data) => {
-        console.log('User Created', data);
-        // alert('Form Data: ' + JSON.stringify(this.registerForm.value));
-        this.router.navigate(['/login']);
+
+      this.user.register(dataPost).subscribe({
+        next: (res) => {
+          console.log('User Created', res);
+          // Nếu BE trả token luôn sau khi đăng ký, có thể lưu lại ở đây
+          // if (res?.accessToken) {
+          //   localStorage.setItem('token', res.accessToken);
+          //   localStorage.setItem('user', JSON.stringify(res.user));
+          // }
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Register error', err);
+          // TODO: show lỗi ra UI (toast, mat-snackbar,...)
+        },
       });
     }
   }

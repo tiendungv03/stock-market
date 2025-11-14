@@ -48,6 +48,16 @@ export class UsersService {
       );
   }
 
+  // ===== Auth =====
+  register(data: {
+    username: string;
+    email: string;
+    password: string;
+  }): Observable<any> {
+    const url = `${this.rest_Api_Server}/auth/register`;
+    return this.http.post<any>(url, data, this.httpOptions);
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
