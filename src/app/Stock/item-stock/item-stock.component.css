@@ -1,0 +1,81 @@
+.stock-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.stock-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stock-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stock-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.stock-exchange {
+  color: gray;
+}
+
+.stock-price {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.stock-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.favorite-btn,
+.update-btn,
+.delete-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.favorite-btn {
+  background-color: #e0e0e0;
+}
+
+.update-btn {
+  background-color: #ffd54f;
+}
+
+.delete-btn {
+  background-color: #ef5350;
+  color: white;
+}
+
+dialog {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 300px;
+}

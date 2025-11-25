@@ -4,10 +4,17 @@
       "id": "71ef",
       "name": "Bitcoin",
       "code": "BTC",
+<<<<<<< HEAD
       "price": 109,
       "previousPrice": 110,
       "exchange": "Binance",
       "favorite": false
+=======
+      "price": 111,
+      "previousPrice": 110,
+      "exchange": "Binance",
+      "favorite": true
+>>>>>>> module
     },
     {
       "id": "ed11",
@@ -15,6 +22,7 @@
       "code": "vtd",
       "price": 305,
       "previousPrice": 1000,
+<<<<<<< HEAD
       "exchange": "OKX",
       "favorite": true
     },
@@ -28,14 +36,33 @@
       "favorite": false
     },
     {
+=======
+      "exchange": "Binance",
+      "favorite": true
+    },
+    {
+>>>>>>> module
       "id": "af41",
       "name": "dung",
       "code": "vtd",
       "price": 636,
       "previousPrice": 636,
       "exchange": "BingX",
+<<<<<<< HEAD
       "favorite": false,
       "stockCheckboxe": true
+=======
+      "favorite": false
+    },
+    {
+      "id": "5c45",
+      "name": "dghjk",
+      "code": "123de",
+      "price": 437,
+      "previousPrice": 437,
+      "exchange": "BingX",
+      "favorite": false
+>>>>>>> module
     }
   ],
   "profile": {
@@ -85,4 +112,8 @@
       "email": "vsc@gmi.com"
     }
   ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> module

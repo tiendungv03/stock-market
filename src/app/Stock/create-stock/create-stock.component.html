@@ -1,0 +1,82 @@
+<div class="form-createStock">
+  <h1>Create Stock</h1>
+
+  <form [formGroup]="profileForm" (ngSubmit)="handleSubmit()">
+    <!-- Stock Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Stock Name</mat-label>
+      <input matInput formControlName="name" placeholder="Enter stock name" />
+      <mat-error *ngIf="profileForm.get('name')?.hasError('required')">
+        ⚠ Name is required.
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('name')?.hasError('minlength')">
+        ⚠ Must be at least 3 characters.
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('name')?.hasError('maxlength')">
+        ⚠ Cannot exceed 20 characters.
+      </mat-error>
+      <mat-error *ngIf="profileForm.get('name')?.hasError('pattern')">
+        ⚠ Only letters are allowed.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Stock Code -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Stock Code</mat-label>
+      <input matInput formControlName="code" placeholder="Enter stock code" />
+      <mat-error *ngIf="profileForm.get('code')?.hasError('required')">
+        ⚠ Stock Code is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Stock Price -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Stock Price</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="price"
+        placeholder="Enter stock price"
+      />
+      <mat-error *ngIf="profileForm.get('price')?.hasError('pattern')">
+        ⚠ Must be a valid number.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Exchange -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Exchange</mat-label>
+      <mat-select formControlName="exchange">
+        <mat-option value="NASDAQ">NASDAQ</mat-option>
+        <mat-option value="BingX">BingX</mat-option>
+        <mat-option value="OKX">OKX</mat-option>
+        <mat-option value="Binance">Binance</mat-option>
+      </mat-select>
+      <mat-error *ngIf="profileForm.get('exchange')?.invalid">
+        ⚠ Please select a stock exchange.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Checkbox -->
+    <mat-checkbox formControlName="stockCheckboxe">
+      I confirm that the information provided is accurate!
+    </mat-checkbox>
+
+    <br /><br />
+    <!-- Submit Button -->
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="profileForm.invalid"
+    >
+      Create
+    </button>
+  </form>
+
+  <!-- Debugging Info -->
+  <div class="debug-info">
+    <p><strong>Form Control Value:</strong> {{ profileForm.value | json }}</p>
+    <p><strong>Form Control Status:</strong> {{ profileForm.status }}</p>
+  </div>
+</div>

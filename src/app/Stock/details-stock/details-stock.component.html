@@ -1,0 +1,46 @@
+<div class="max-w-lg mx-auto bg-white shadow-xl rounded-xl p-8">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">
+    Chi tiết cổ phiếu
+  </h2>
+
+  <ng-container *ngIf="!notFound; else notfoundTpl">
+    <form [formGroup]="stockForm" *ngIf="stockForm" class="space-y-6">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Code</mat-label>
+        <input matInput type="text" formControlName="code" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Price</mat-label>
+        <input matInput type="text" formControlName="price" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Previous Price</mat-label>
+        <input matInput type="text" formControlName="previousPrice" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Exchange</mat-label>
+        <input matInput type="text" formControlName="exchange" />
+      </mat-form-field>
+
+      <div class="flex items-center">
+        <mat-checkbox
+          formControlName="favorite"
+          class="locked-checkbox"
+        ></mat-checkbox>
+        <span class="ml-2">Favorite</span>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-template #notfoundTpl>
+    <div class="text-center text-gray-600">Không tìm thấy cổ phiếu.</div>
+  </ng-template>
+</div>

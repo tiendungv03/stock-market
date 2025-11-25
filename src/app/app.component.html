@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <app-stock-item [stocks]="stockList"></app-stock-item>
 <app-create-stock (stockCreated)="addStock($event)"></app-create-stock> -->
 
@@ -52,3 +53,35 @@
   </ul>
 </nav>
 <router-outlet></router-outlet>
+=======
+<mat-sidenav-container class="sidenav-container links">
+  <mat-sidenav #sidenav mode="side" opened="false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/stocks/list" (click)="sidenav?.close()"
+        >List Stock</a
+      >
+      <a mat-list-item routerLink="/stock/create" (click)="sidenav?.close()"
+        >Create Stock</a
+      >
+      <a mat-list-item (click)="sidenav?.close()"> X Close</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav?.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Stock Market </span>
+      <span class="spacer"></span>
+      <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+      <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
+      <a mat-button routerLink="/register" routerLinkActive="active"
+        >Register</a
+      >
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+>>>>>>> module

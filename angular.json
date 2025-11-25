@@ -7,7 +7,17 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
+<<<<<<< HEAD
           "style": "scss"
+=======
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
+>>>>>>> module
         }
       },
       "root": "",
@@ -20,11 +30,16 @@
             "outputPath": "dist/stock-market",
             "index": "src/index.html",
             "browser": "src/main.ts",
+<<<<<<< HEAD
             "polyfills": [
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+=======
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+>>>>>>> module
             "assets": [
               {
                 "glob": "**/*",
@@ -32,6 +47,7 @@
               }
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.scss"
             ],
             "scripts": [],
@@ -40,6 +56,12 @@
             "ssr": {
               "entry": "src/server.ts"
             }
+=======
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.css"
+            ],
+            "scripts": []
+>>>>>>> module
           },
           "configurations": {
             "production": {
@@ -83,12 +105,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+<<<<<<< HEAD
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
+=======
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+>>>>>>> module
             "assets": [
               {
                 "glob": "**/*",
@@ -96,7 +123,12 @@
               }
             ],
             "styles": [
+<<<<<<< HEAD
               "src/styles.scss"
+=======
+              "@angular/material/prebuilt-themes/azure-blue.css",
+              "src/styles.css"
+>>>>>>> module
             ],
             "scripts": []
           }
@@ -105,6 +137,10 @@
     }
   },
   "cli": {
+<<<<<<< HEAD
     "analytics": "d9a12b86-a9d9-4622-b4a1-bf4aebf14c6b"
+=======
+    "analytics": "b485aa79-e92c-4db7-b5b0-37eeab3fbc07"
+>>>>>>> module
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './User/login/login.component';
 import { StockItemComponent } from './baiThucHanh/stock/stock-item/stock-item.component';
@@ -20,6 +21,20 @@ import { CreateStockApiComponent } from './baiThucHanh/create-stock/baiTH6_API/c
   imports: [RouterOutlet, RouterLink, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+=======
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  standalone: false,
+  styleUrl: './app.component.css',
+>>>>>>> module
 })
 export class AppComponent {
   title = 'stock-market';

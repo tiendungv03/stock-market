@@ -1,13 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+<<<<<<< HEAD
 import { get } from 'http';
+=======
+>>>>>>> module
 
 @Injectable({
   providedIn: 'root',
 })
 export class StockService {
+<<<<<<< HEAD
   private rest_Api_Server = 'http://localhost:3000';
+=======
+  // private rest_Api_Server = 'https://localhost:7135/api';
+  private rest_Api_Server = 'http://localhost:3000/api';
+>>>>>>> module
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -24,8 +32,14 @@ export class StockService {
     return this.http.get<any>(url, this.httpOptions);
   }
 
+<<<<<<< HEAD
   public getStockByCode(ID: any): Observable<any> {
     const url = `${this.rest_Api_Server}/stocks/${ID}`;
+=======
+  public getStockByCode(_id: any): Observable<any> {
+    const url = `${this.rest_Api_Server}/stocks/${_id}`;
+    console.log('Get Stock by code URL:', url);
+>>>>>>> module
     return this.http.get<any>(url, this.httpOptions);
   }
 
@@ -34,9 +48,15 @@ export class StockService {
     return this.http.post<any>(url, data, this.httpOptions);
   }
 
+<<<<<<< HEAD
   public put(data: any): Observable<any> {
     console.log('Stock data', data);
     const url = `${this.rest_Api_Server}/stocks/${data.id}`;
+=======
+  public put(id: any, data: any): Observable<any> {
+    console.log('Stock data', data);
+    const url = `${this.rest_Api_Server}/stocks/${id}`;
+>>>>>>> module
     console.log('Stock Updated', url);
     return this.http.put<any>(url, data, this.httpOptions);
   }
@@ -51,7 +71,11 @@ export class StockService {
   public toggleFavorite(data: any): Observable<any> {
     data.favorite = !data.favorite;
     // console.log('Stock favorite', data);
+<<<<<<< HEAD
     const url = `${this.rest_Api_Server}/stocks/${data.id}`;
+=======
+    const url = `${this.rest_Api_Server}/stocks/${data._id}`;
+>>>>>>> module
     console.log('Stock Updated', url);
     return this.http.put<any>(url, data, this.httpOptions);
   }
